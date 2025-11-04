@@ -24,62 +24,66 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur">
-      <div className="container-xl flex h-24 items-center">
-        {/* Brand: tooth + two-line uppercase wordmark (bigger) */}
-        <Link href="/" className="flex items-center gap-3 text-[color:var(--text-dark)]" aria-label="Burleydds Dentistry">
+    <header className="sticky top-0 z-50 bg-white shadow-sm">
+      <div className="container-xl flex h-24 items-center justify-between px-6">
+        {/* Logo Section - UPDATED CLASSES HERE */}
+        <Link href="/" className="flex items-center gap-2 select-none"> {/* Reduced gap from 3 to 2 */}
           <Image
             src="/logo-tooth.svg"
             alt="Burleydds Dentistry"
-            width={48}
-            height={54}
+            width={40} // Smaller size on mobile
+            height={44} // Smaller size on mobile
             priority
-            className="shrink-0"
+            className="shrink-0 sm:w-[52px] sm:h-[56px]" // Use sm: to keep the original large size on tablets/desktop
           />
-          <div className="leading-[0.98] -mt-0.5 select-none">
-            <div className="font-sans font-black uppercase tracking-tight text-[36px] md:text-[40px]">
-              MOOREHEAD
+          <div className="leading-tight">
+            {/* The text is now smaller on mobile and increases on sm: */}
+            <div className="font-sans font-extrabold text-[20px] sm:text-[34px] tracking-tight text-[#1a1a1a] uppercase"> 
+              BURLEYDDS
             </div>
-            <div className="font-sans font-black uppercase tracking-tight text-[36px] md:text-[40px] -mt-1">
+            {/* The second line is smaller on mobile, increases on sm:, and has a tighter negative margin for mobile */}
+            <div className="font-sans font-extrabold text-[20px] sm:text-[34px] tracking-tight text-[#1a1a1a] uppercase -mt-1 sm:-mt-1">
               DENTISTRY
             </div>
           </div>
         </Link>
 
-        {/* Desktop nav: add more space before HOME */}
-        <nav className="hidden lg:flex items-center gap-10 xl:gap-14 ml-16 md:ml-24 lg:ml-32 xl:ml-40">
+        {/* Desktop Nav - Unchanged */}
+        <nav className="hidden lg:flex items-center gap-12">
           {navigation.map((item) => (
             <NavLink key={item.label} item={item} />
           ))}
         </nav>
 
-        {/* Mobile toggle */}
+        {/* Mobile Button - UPDATED STYLING AND ADDED 'MENU' TEXT */}
+        {/* To match the Moorehead design, we remove the border and add the 'MENU' text */}
         <button
           type="button"
-          className="ml-auto lg:hidden inline-flex h-11 w-11 items-center justify-center rounded-full border border-[color:var(--border-subtle)] text-[color:var(--text-dark)]"
-          aria-label="Toggle menu"
-          aria-expanded={open}
+          className="ml-auto lg:hidden inline-flex items-center justify-center gap-1 text-[#937848] transition-colors duration-200" // Styled to match Moorehead look
           onClick={() => setOpen((v) => !v)}
+          aria-label="Toggle menu"
         >
-          {open ? <CloseIcon /> : <MenuIcon />}
+          <span className="text-[14px] font-semibold uppercase tracking-wider">MENU</span>
+          {/* We now apply the color and stroke to the icon directly */}
+          {open ? <CloseIcon className="h-5 w-5 stroke-2" /> : <MenuIcon className="h-5 w-5 stroke-2" />}
         </button>
       </div>
 
-      {/* Mobile drawer */}
+      {/* Mobile Menu - Unchanged */}
       {open && (
-        <div className="lg:hidden border-t border-[color:var(--border-subtle)] bg-[color:var(--off-white)]">
-          <div className="container-xl py-6 flex flex-col gap-5">
+        <div className="lg:hidden border-t border-gray-200 bg-white">
+          <div className="container-xl py-6 flex flex-col gap-4 px-6">
             {navigation.map((item) => (
               <Link
                 key={item.label}
                 href={item.href}
                 onClick={() => setOpen(false)}
-                className={`flex items-center justify-between text-[12px] font-extrabold uppercase tracking-[0.20em] ${
-                  item.isActive ? "text-[color:var(--brand-gold)]" : "text-[color:var(--text-dark)]"
+                className={`flex items-center justify-between text-[14px] font-semibold uppercase tracking-wider ${
+                  item.isActive ? "text-[#937848]" : "text-black hover:text-[#937848]"
                 }`}
               >
-                <span>{item.label}</span>
-                {item.hasDropdown ? <ChevronDownIcon className="h-4 w-4 text-[color:var(--brand-gold)]" /> : null}
+                {item.label}
+                {item.hasDropdown && <ChevronDownIcon className="h-4 w-4 text-[#937848]" />}
               </Link>
             ))}
           </div>
@@ -93,38 +97,36 @@ function NavLink({ item }: { item: NavigationItem }) {
   return (
     <Link
       href={item.href}
-      className={`inline-flex items-center gap-2 text-[15px] font-extrabold uppercase tracking-[0.20em] transition ${
-        item.isActive
-          ? "text-[color:var(--brand-gold)]"
-          : "text-[color:var(--text-dark)] hover:text-[color:var(--brand-gold)]"
+      className={`inline-flex items-center gap-2 text-[15px] font-semibold uppercase tracking-wide transition-colors duration-200 ${
+        item.isActive ? "text-[#937848]" : "text-black hover:text-[#937848]"
       }`}
     >
       {item.label}
-      {item.hasDropdown ? (
-        <ChevronDownIcon className="h-[14px] w-[14px] text-[color:var(--brand-gold)]" />
-      ) : null}
+      {item.hasDropdown && <ChevronDownIcon className="h-[14px] w-[14px] text-[#937848]" />}
     </Link>
   );
 }
 
-/* Icons */
-function MenuIcon() {
+/* Icons - Updated to accept className prop for color/stroke control */
+function MenuIcon({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} className="h-5 w-5" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} className={className}>
       <path strokeLinecap="round" d="M4 7h16M4 12h16M4 17h16" />
     </svg>
   );
 }
-function CloseIcon() {
+
+function CloseIcon({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} className="h-5 w-5" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} className={className}>
       <path strokeLinecap="round" d="M6 6l12 12M6 18 18 6" />
     </svg>
   );
 }
+
 function ChevronDownIcon({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} className={className} aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} className={className}>
       <path strokeLinecap="round" strokeLinejoin="round" d="m6 9 6 6 6-6" />
     </svg>
   );

@@ -29,6 +29,7 @@ body {
   color: var(--text-dark);
   font-family: var(--font-inter);
   text-rendering: optimizeLegibility;
+  overflow-x: hidden;
 }
 
 a {
@@ -109,33 +110,6 @@ h4,
   text-decoration: underline;
 }
 
-/* spacing for each column group */
-.footer-group { @apply space-y-3; }
-
-/* top container padding */
-.footer-wrap { @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12; }
-
-/* thin divider (very subtle) */
-.footer-divider { @apply border-t border-[color:var(--border-subtle)]; }
-
-/* bottom strip (khaki bar) */
-.footer-bottom {
-  background-color: #9A8657; /* khaki close to the ref */
-  @apply text-white;
-}
-.footer-bottom a {
-  @apply text-white/90 transition;
-  text-underline-offset: 3px;
-}
-.footer-bottom a:hover {
-  @apply text-white;
-  text-decoration: underline;
-}
-.footer-bottom-inner {
-  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap items-center gap-4 py-3 text-xs;
-}
-
-
 /* === CLINIC FEATURE SECTION STYLES (exact to reference) === */
 .hex-bg {
   background-image: url("data:image/svg+xml,%3Csvg width='160' height='140' viewBox='0 0 160 140' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23e5e7eb' stroke-opacity='0.45'%3E%3Cpath d='M40 10 L80 10 L100 40 L80 70 L40 70 L20 40 Z'/%3E%3C/g%3E%3C/svg%3E");
@@ -150,7 +124,7 @@ h4,
 }
 
 .card-body {
-  @apply px-12 py-14 text-center;
+  @apply px-8 py-12 text-center sm:px-12 sm:py-14;
 }
 
 .card h3 {
@@ -200,52 +174,65 @@ h4,
 .btn-gold:hover {
   filter: brightness(0.92);
 }
-/* BEGIN_FOOTER_STYLES */
-/* === Footer (light theme like reference) === */
+
+/* ---- Footer (match reference layout) ---- */
 .footer {
-  @apply bg-white text-[color:var(--text-dark)];
+  background: #ffffff;
+  color: var(--text-dark);
 }
 
 .footer-heading {
-  color: var(--brand-gold);
-  @apply font-serif text-xl mb-4;
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #937846;
+  margin-bottom: 0.75rem;
 }
-
-.footer-group { @apply space-y-3; }
 
 .footer-link {
-  @apply text-[color:var(--text-dark)] leading-7 transition;
-  text-underline-offset: 4px;
+  display: inline-block;
+  font-size: 0.875rem;
+  color: #333333;
+  line-height: 1.5;
+  text-decoration: none;
 }
-.footer-link:hover {
-  color: var(--brand-gold);
+
+.footer-icon {
+  color: #937846;
+  transition: color 0.2s ease;
+}
+.footer-icon:hover {
+  color: #b08f59;
+}
+
+.footer-bottom-link {
+  color: rgba(255, 255, 255, 0.92);
+  text-decoration: none;
+}
+.footer-bottom-link:hover {
   text-decoration: underline;
 }
 
-/* container spacing — inline the utilities directly */
-.footer-wrap { 
-  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12;
+.payment-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 26px;
+  font-family: var(--font-serif);
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: #87622c;
+  background-color: #f3ead6;
+  border: 1px solid #87622c;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
-/* very subtle divider */
-.footer-divider { @apply border-t border-[color:var(--border-subtle)]; }
-
-/* bottom khaki bar */
-.footer-bottom {
-  background-color: #9A8657; /* khaki similar to screenshot */
-  @apply text-white;
+.payment-cta:hover,
+.payment-cta:focus-visible {
+  color: #fdf8ec;
+  background-color: #87622c;
+  border-color: #ffffff;
 }
-.footer-bottom a {
-  @apply text-white/90 transition;
-  text-underline-offset: 3px;
-}
-.footer-bottom a:hover {
-  @apply text-white;
-  text-decoration: underline;
-}
-
-/* bottom row container */
-.footer-bottom-inner {
-  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap items-center gap-4 py-3 text-xs;
-}
-/* END_FOOTER_STYLES */
