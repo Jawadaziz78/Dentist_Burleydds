@@ -113,7 +113,7 @@ h4,
 .footer-group { @apply space-y-3; }
 
 /* top container padding */
-.footer-wrap { @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12; }
+.footer-wrap { @apply container-xl py-12; }
 
 /* thin divider (very subtle) */
 .footer-divider { @apply border-t border-[color:var(--border-subtle)]; }
@@ -132,7 +132,7 @@ h4,
   text-decoration: underline;
 }
 .footer-bottom-inner {
-  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap items-center gap-4 py-3 text-xs;
+  @apply container-xl flex flex-wrap items-center gap-4 py-3 text-xs;
 }
 
 
@@ -200,52 +200,3 @@ h4,
 .btn-gold:hover {
   filter: brightness(0.92);
 }
-/* BEGIN_FOOTER_STYLES */
-/* === Footer (light theme like reference) === */
-.footer {
-  @apply bg-white text-[color:var(--text-dark)];
-}
-
-.footer-heading {
-  color: var(--brand-gold);
-  @apply font-serif text-xl mb-4;
-}
-
-.footer-group { @apply space-y-3; }
-
-.footer-link {
-  @apply text-[color:var(--text-dark)] leading-7 transition;
-  text-underline-offset: 4px;
-}
-.footer-link:hover {
-  color: var(--brand-gold);
-  text-decoration: underline;
-}
-
-/* container spacing — inline the utilities directly */
-.footer-wrap { 
-  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12;
-}
-
-/* very subtle divider */
-.footer-divider { @apply border-t border-[color:var(--border-subtle)]; }
-
-/* bottom khaki bar */
-.footer-bottom {
-  background-color: #9A8657; /* khaki similar to screenshot */
-  @apply text-white;
-}
-.footer-bottom a {
-  @apply text-white/90 transition;
-  text-underline-offset: 3px;
-}
-.footer-bottom a:hover {
-  @apply text-white;
-  text-decoration: underline;
-}
-
-/* bottom row container */
-.footer-bottom-inner {
-  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap items-center gap-4 py-3 text-xs;
-}
-/* END_FOOTER_STYLES */

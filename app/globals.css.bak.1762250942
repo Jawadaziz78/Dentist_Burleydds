@@ -113,7 +113,7 @@ h4,
 .footer-group { @apply space-y-3; }
 
 /* top container padding */
-.footer-wrap { @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12; }
+.footer-wrap { @apply container-xl py-12; }
 
 /* thin divider (very subtle) */
 .footer-divider { @apply border-t border-[color:var(--border-subtle)]; }
@@ -132,7 +132,7 @@ h4,
   text-decoration: underline;
 }
 .footer-bottom-inner {
-  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap items-center gap-4 py-3 text-xs;
+  @apply container-xl flex flex-wrap items-center gap-4 py-3 text-xs;
 }
 
 

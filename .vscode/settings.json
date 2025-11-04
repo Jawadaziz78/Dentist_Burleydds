@@ -1,0 +1,14 @@
+{
+  // Use Node 20 for ESLint and any VS Code processes that need a runtime
+  "eslint.runtime": "/home/jawad/.nvm/versions/node/v20.19.5/bin/node",
+  "eslint.nodePath": "/home/jawad/.nvm/versions/node/v20.19.5/lib/node_modules",
+
+  // Make terminals inherit your shell env (so nvm’s Node 20 is used)
+  "terminal.integrated.inheritEnv": true,
+
+  // Quiet CSS warnings about Tailwind at-rules
+  "css.lint.unknownAtRules": "ignore",
+  "scss.lint.unknownAtRules": "ignore",
+  "less.lint.unknownAtRules": "ignore",
+  "postcss.validate": true
+}

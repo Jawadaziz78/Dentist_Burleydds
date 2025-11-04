@@ -1,65 +1,121 @@
-import Image from "next/image";
+import GalleryStrip from "@/components/GalleryStrip";
+import InsuranceBar from "../components/InsuranceBar";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
+    <>
+      <HeroSection />
+      <FeaturesSection />
+      <WelcomeSection />
+      <GalleryStrip />
+      <InsuranceBar />
+    </>
+  );
+}
+
+// --- HERO (full-bleed image, centered, no gap below navbar)
+function HeroSection() {
+  return (
+    <section id="home" className="relative isolate overflow-hidden">
+      {/* Background image */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/hero.jpg"
+        alt=""
+        className="absolute inset-0 -z-10 h-full w-full object-cover object-center"
+      />
+      {/* Dark overlay for contrast */}
+      <div className="absolute inset-0 -z-10 bg-black/35" />
+
+      <div className="container-xl flex min-h-[62vh] flex-col items-center justify-center py-16 text-center sm:min-h-[68vh] lg:min-h-[72vh]">
+        <h1 className="font-serif text-[42px] leading-[1.15] text-white sm:text-[56px] md:text-[64px] lg:text-[72px]">
+          Feel At Home With a Relaxing Dental
+          <br className="hidden sm:block" />
+          <span> Experience.</span>
+        </h1>
+
+        <p className="mt-6 max-w-3xl text-base text-white/90 sm:text-lg">
+          Proudly Serving Cincinnati, Batavia, and Lebanon
+        </p>
+
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+          <a href="#doctors" className="btn btn-outline-light rounded-full px-6 py-3 text-sm font-semibold">
+            Meet Our Doctors
           </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
+          <a href="#appointment" className="btn btn-gold rounded-full px-6 py-3 text-sm font-semibold">
+            Make An Appointment
           </a>
         </div>
-      </main>
-    </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------- FEATURES (three cards with hex watermark) ---------- */
+function FeaturesSection() {
+  const items = [
+    {
+      title: "Need Urgent Dental Care?",
+      body:
+        "We offer quick assessments and fast referrals. We’ll prioritize getting you an exam and guiding you to the right treatment—whether in our office or with one of our trusted specialists.",
+      cta: "Emergency Dentistry",
+      href: "#",
+    },
+    {
+      title: "Complimentary IV Sedation",
+      body:
+        "We proudly offer complimentary IV sedation for treatments over $2,500 to ensure your comfort during extensive procedures. Contact us today to learn more and schedule your consultation.",
+      cta: "IV Sedation Dentistry",
+      href: "#",
+    },
+    {
+      title: "Restore Your Smile",
+      body:
+        "Dental implants offer a long-lasting solution for missing teeth, providing stability and a natural look that enhances your smile and oral health. With implants, you can enjoy improved chewing, speaking, and confidence, knowing your restoration is secure.",
+      cta: "Explore Dental Implants",
+      href: "#",
+    },
+  ];
+
+  return (
+    <section aria-labelledby="features-heading" className="relative py-16 md:py-20">
+      {/* Pale hex watermark behind */}
+      <div className="absolute inset-0 hex-bg opacity-30 -z-10" />
+
+      <div className="container-xl grid grid-cols-1 md:grid-cols-3 gap-8">
+        {items.map((it) => (
+          <article key={it.title} className="card">
+            <div className="card-body">
+              <h3>{it.title}</h3>
+              <p>{it.body}</p>
+              <a href={it.href} className="mt-6 btn-outline-gold">{it.cta}</a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+/* ---------- WELCOME (gold heading centered) ---------- */
+function WelcomeSection() {
+  return (
+    <section aria-labelledby="welcome-heading" className="relative py-14 md:py-16">
+      {/* Faint repeating hex behind like reference */}
+      <div className="absolute inset-0 hex-bg opacity-20 -z-10" />
+
+      <div className="container-xl welcome-wrap">
+        <h2 id="welcome-heading" className="welcome-title">
+          Welcome to Burleydds Dentistry
+        </h2>
+
+        <p className="welcome-text">
+          Burleydds Dentistry, located in Blue Ash, Batavia, and Lebanon, OH, provides a relaxing environment where you can
+          feel at home. Dr. Burleydds and his staff ensure their care puts you immediately at ease, is of optimal quality,
+          and is provided at an affordable price. At Burleydds Dentistry, our advanced dental technology helps ensure you
+          have a positive patient experience every time.
+        </p>
+      </div>
+    </section>
   );
 }
