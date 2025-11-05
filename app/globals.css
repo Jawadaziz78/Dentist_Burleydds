@@ -1,22 +1,24 @@
 @import "tailwindcss";
 
 :root {
-  color-scheme: light;
-  --brand-gold: #A78B5A;
-  --text-dark: #1F2937;
-  --off-white: #FAFAF8;
-  --border-subtle: #E5E7EB;
-  --font-inter: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", sans-serif;
-  --font-cormorant: "Cormorant Garamond", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  color‑scheme: light;
+  --brand‑gold: #A78B5A;
+  --text‑dark: #1F2937;
+  --off‑white: #FAFAF8;
+  --border‑subtle: #E5E7EB;
+  --font‑inter: "Inter", ui‑sans‑serif, system-ui, -apple‑system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", sans-serif;
+  --font‑cormorant: "Cormorant Garamond", ui‑serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  /* Prevent whole‑document cross‑fade; only named elements transition */
+  view-transition-name: none;
 }
 
 @theme inline {
-  --color-brandGold: var(--brand-gold);
-  --color-textDark: var(--text-dark);
-  --color-offWhite: var(--off-white);
-  --color-borderSubtle: var(--border-subtle);
-  --font-sans: var(--font-inter);
-  --font-serif: var(--font-cormorant);
+  --color‑brandGold: var(--brand‑gold);
+  --color‑textDark: var(--text‑dark);
+  --color‑offWhite: var(--off‑white);
+  --color‑borderSubtle: var(--border‑subtle);
+  --font‑sans: var(--font‑inter);
+  --font‑serif: var(--font‑cormorant);
 }
 
 html {
@@ -84,7 +86,6 @@ h4,
   .video-hero video {
     display: none;
   }
-
   .video-hero .hero-fallback {
     display: block;
   }
@@ -96,7 +97,6 @@ h4,
 }
 
 .footer-heading {
-  /* matches the gold headings in reference */
   color: var(--brand-gold);
   @apply font-serif text-xl mb-4;
 }
@@ -110,7 +110,7 @@ h4,
   text-decoration: underline;
 }
 
-/* === CLINIC FEATURE SECTION STYLES (exact to reference) === */
+/* === Clinic feature section styles === */
 .hex-bg {
   background-image: url("data:image/svg+xml,%3Csvg width='160' height='140' viewBox='0 0 160 140' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23e5e7eb' stroke-opacity='0.45'%3E%3Cpath d='M40 10 L80 10 L100 40 L80 70 L40 70 L20 40 Z'/%3E%3C/g%3E%3C/svg%3E");
   background-size: 160px 140px;
@@ -142,12 +142,14 @@ h4,
   background: transparent;
   transition: filter .15s ease, background .15s ease;
 }
-.btn-outline-gold:hover { background: rgba(167,139,90,.08); }
+.btn-outline-gold:hover {
+  background: rgba(167,139,90,.08);
+}
 
 /* Welcome block */
 .welcome-wrap {
   @apply text-center mx-auto;
-  max-width: 68rem; /* ~1088px */
+  max-width: 68rem;
 }
 .welcome-title {
   @apply font-serif text-[40px] md:text-[44px] leading-tight font-semibold;
@@ -175,7 +177,7 @@ h4,
   filter: brightness(0.92);
 }
 
-/* ---- Footer (match reference layout) ---- */
+/* ---- Footer part two ---- */
 .footer {
   background: #ffffff;
   color: var(--text-dark);
@@ -235,4 +237,103 @@ h4,
   color: #fdf8ec;
   background-color: #87622c;
   border-color: #ffffff;
+}
+
+/* === Enhanced View Transition Utilities === */
+/* Hero image transition styling with smooth crossfade */
+.view-transition-name-hero-image {
+  view-transition-name: hero-image;
+}
+
+/* Utility to force elements out of transitions */
+.no-view-transition {
+  view-transition-name: none;
+}
+
+/* Smooth crossfade transitions with subtle zoom - MUCH SLOWER */
+::view-transition-old(hero-image) {
+  animation: fade-out-smooth 3s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+::view-transition-new(hero-image) {
+  animation: fade-in-smooth 3s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+@keyframes fade-out-smooth {
+  from { 
+    opacity: 1;
+    transform: scale(1);
+  }
+  to { 
+    opacity: 0;
+    transform: scale(1.02);
+  }
+}
+
+@keyframes fade-in-smooth {
+  from { 
+    opacity: 0;
+    transform: scale(1.02);
+  }
+  to { 
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Fallback animation for browsers without View Transitions API */
+.hero-image-fallback {
+  animation: hero-fallback-fade 3s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+@supports (view-transition-name: hero-image) {
+  .hero-image-fallback {
+    animation: none;
+  }
+}
+
+@keyframes hero-fallback-fade {
+  from { 
+    opacity: 0;
+    transform: scale(1.02);
+  }
+  to { 
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Gallery image transition styling */
+.view-transition-name-gallery-image {
+  view-transition-name: gallery-image;
+}
+
+::view-transition-old(gallery-image) {
+  animation: fade-out-gallery 0.8s ease-in-out both;
+}
+::view-transition-new(gallery-image) {
+  animation: fade-in-gallery 0.8s ease-in-out both;
+}
+
+@keyframes fade-out-gallery {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+@keyframes fade-in-gallery {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Hero Crossfade Animation - Smooth fade in without overlap issues */
+@keyframes hero-fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.animate-hero-fade {
+  animation: hero-fade 2.5s ease-in-out forwards;
 }

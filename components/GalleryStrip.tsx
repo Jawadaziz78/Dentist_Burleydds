@@ -2,8 +2,8 @@
 "use client";
 
 /**
- * Full-bleed hero section with responsive image.
- * Uses /public/back.png — update src if needed.
+ * Full‑bleed gallery section (static).
+ * Intentionally does NOT rotate or animate.
  */
 export default function GalleryStrip() {
   return (
@@ -17,7 +17,7 @@ export default function GalleryStrip() {
       <div className="relative aspect-[4/3] sm:aspect-[16/9] md:aspect-[21/9] lg:aspect-[3/1]">
         <img
           src="/back.png"
-          alt="Dentist Hero"
+          alt="Gallery image"
           className="absolute inset-0 h-full w-full object-cover object-top"
           loading="lazy"
           decoding="async"

@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import Link from "next/link";
 
 export default function InsuranceBar() {
@@ -54,6 +55,50 @@ export default function InsuranceBar() {
           >
             Financial &amp; Insurance Information
           </Link>
+        </div>
+
+        {/* Logos row (restored) */}
+        <div className="mt-12 grid grid-cols-2 items-center justify-items-center gap-10 md:grid-cols-4 no-view-transition">
+          <div className="flex h-[56px] w-[180px] items-center justify-center">
+            <Image
+              src="/cigna.png"
+              alt="Cigna"
+              width={180}
+              height={56}
+              className="max-h-[56px] w-auto object-contain no-view-transition"
+              priority
+            />
+          </div>
+          <div className="flex h-[56px] w-[180px] items-center justify-center">
+            <Image
+              src="/delta-dental.png"
+              alt="Delta Dental"
+              width={180}
+              height={56}
+              className="max-h-[56px] w-auto object-contain no-view-transition"
+              priority
+            />
+          </div>
+          <div className="flex h-[56px] w-[180px] items-center justify-center">
+            <Image
+              src="/Dental-Care-Plus.png"
+              alt="The Dental Care Plus Group"
+              width={180}
+              height={56}
+              className="max-h-[56px] w-auto object-contain no-view-transition"
+              priority
+            />
+          </div>
+          <div className="flex h-[56px] w-[180px] items-center justify-center">
+            <Image
+              src="/metlife.png"
+              alt="MetLife"
+              width={180}
+              height={56}
+              className="max-h-[56px] w-auto object-contain no-view-transition"
+              priority
+            />
+          </div>
         </div>
       </div>
     </section>
